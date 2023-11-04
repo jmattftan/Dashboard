@@ -1,0 +1,287 @@
+/* Main Body */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url("Photos/solid_background.jpg") center/cover no-repeat;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  user-select: none;
+  overflow: visible;
+}
+
+/* Main Row */
+
+.main-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+}
+
+/* Icon Section */
+
+.glassmorphism-website-icons {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  /* margin: auto; */
+  width: 70% !important;
+}
+
+@media screen and (max-width: 991px) {
+  .glassmorphism-website-icons {
+    display: grid;
+    grid-template-columns: repeat(
+      5,
+      1fr
+    ); /* Adjust the number of columns as needed */
+    gap: 10px; /* Adjust the gap between items as needed */
+    width: auto !important;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+@media screen and (max-width: 912px) {
+  .glassmorphism-search {
+    margin-right: 0.1rem !important;
+    margin-left: 0.1rem !important;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+@media screen and (max-width: 992px) {
+}
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 1200px) {
+}
+
+.glassmorphism-website-icons i {
+  display: block;
+  font-size: 30px;
+  line-height: 2;
+}
+
+.glassmorphism-website-icons a {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Set the color to black (or your desired color) */
+}
+
+.glassmorphism-website-icons a:hover {
+  color: black; /* Set the color for the link when hovered (e.g., blue) */
+}
+
+/* Search Section */
+
+.glassmorphism-search {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+}
+
+.glassmorphism-search-input {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: grey;
+  border: 1px solid white;
+  border-radius: 30px;
+}
+
+.glassmorphism-search-input:focus {
+  border-color: white;
+}
+
+.glassmorphism-search-input::placeholder {
+  color: grey;
+}
+
+/* Spotify Music Player Section */
+
+.glassmorphism-twitter-feed {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+/* News Section */
+
+.glassmorphism-news {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  height: 400px; /* Adjust the height as needed */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  overflow-x: hidden;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Works on Firefox */
+.glassmorphism-news {
+  scrollbar-width: thin;
+  scrollbar-color: white grey;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.glassmorphism-news::-webkit-scrollbar {
+  border-radius: 30px;
+}
+
+.glassmorphism-news::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  max-height: 10px;
+}
+
+.glassmorphism-news::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(whitesmoke, whitesmoke, whitesmoke, 0.25);
+  border-radius: 50px;
+}
+
+.main-title-news {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: bold;
+}
+
+#title-news {
+  font-weight: bold;
+  text-align: justify;
+  color: black;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+#news-paragraph {
+  text-align: justify;
+  color: white;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+.glassmorphism-news a {
+  text-decoration: none;
+  color: black;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.glassmorphism-news a:hover {
+  color: white;
+}
+
+/* Clock Section */
+
+.glassmorphism-clock {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: auto;
+  border-radius: 10px;
+  height: 400px;
+}
+
+/* Works on Firefox */
+.glassmorphism-clock {
+  scrollbar-width: thin;
+  scrollbar-color: white grey;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.glassmorphism-clock::-webkit-scrollbar {
+  border-radius: 30px;
+}
+
+.glassmorphism-clock::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  max-height: 10px;
+}
+
+.glassmorphism-clock::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(whitesmoke, whitesmoke, whitesmoke, 0.25);
+  border-radius: 50px;
+}
+
+.city-country {
+  margin-top: 0.5rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+#clock {
+  font: 50 35px Orbitron, sans-serif;
+  margin-top: 0.2rem !important;
+  margin-bottom: 0.2rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+#date {
+  margin-bottom: 0.2rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+#day-of-week {
+  margin-bottom: 1rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+#quote {
+  text-align: justify;
+  color: white;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+#author {
+  margin-top: 0.5rem !important;
+  margin-bottom: 2rem !important;
+  font-weight: bold;
+}
+
+/* Weather Section */
+
+.glassmorphism-weather {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
