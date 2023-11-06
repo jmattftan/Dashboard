@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url("Photos/solid_background.jpg") center/cover no-repeat;
+  background: url("Photos/solid_background_two.jpg") center/cover no-repeat;
   font-family: Roboto, sans-serif;
   display: flex;
   justify-content: center;
@@ -31,8 +31,30 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
-  /* margin: auto; */
+  margin: auto;
+  /* margin-left: auto; */
   width: 70% !important;
+}
+
+@media screen and (max-width: 355px) {
+  #clock {
+    font-size: 25px !important;
+  }
+}
+
+@media screen and (max-width: 255px) {
+  #clock {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 912px) {
+  .glassmorphism-search {
+    margin-right: 0.1rem !important;
+    margin-left: 0.1rem !important;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -48,14 +70,7 @@ body {
     overflow-y: auto;
   }
 }
-@media screen and (max-width: 912px) {
-  .glassmorphism-search {
-    margin-right: 0.1rem !important;
-    margin-left: 0.1rem !important;
-    overflow-x: auto;
-    overflow-y: auto;
-  }
-}
+
 @media screen and (max-width: 992px) {
 }
 @media screen and (max-width: 1024px) {
@@ -115,12 +130,113 @@ body {
 
 /* Spotify Music Player Section */
 
-.glassmorphism-twitter-feed {
+.glassmorphism-music-player {
   background: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 10px;
+  height: 530px;
+}
+
+.main-music-title {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: bold;
+}
+
+.music-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  margin-top: 1rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.music-title {
+  margin-top: 0.2rem !important;
+  margin-bottom: 0.1rem !important;
+}
+
+.music-author {
+  margin-top: 0.1rem !important;
+  margin-bottom: 0.3rem !important;
+}
+
+audio {
+  margin-top: 0.3rem !important;
+  margin-bottom: 0.1rem !important;
+}
+
+.music-player-buttons {
+  color: white;
+  background: transparent;
+  border-radius: 50px !important;
+  border: hidden;
+  margin-top: 0.1rem !important;
+  margin-bottom: 0.3rem !important;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+  font-size: 30px;
+}
+
+.music-player-buttons:hover {
+  color: black;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.music-lists::-webkit-scrollbar {
+  border-radius: 30px;
+}
+
+.music-lists::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  max-height: 10px;
+}
+
+.music-lists::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(whitesmoke, whitesmoke, whitesmoke, 0.25);
+}
+
+.music-lists {
+  margin-top: 0.3rem !important;
+  margin-bottom: 1rem !important;
+  overflow-y: auto;
+  height: 130px;
+  text-align: start;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.music-lists ul {
+  list-style-type: circle;
+}
+
+/* Hide all audio player controls except the scrollbar */
+
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-panel,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider-container {
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-rewind-button,
+audio::-webkit-media-controls-return-to-realtime-button,
+audio::-webkit-media-controls-toggle-closed-captions-button {
+  display: none;
 }
 
 /* News Section */
@@ -210,7 +326,8 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: auto;
+  overflow-x: hidden;
+  /* overflow-x: auto; */
   border-radius: 10px;
   height: 400px;
 }

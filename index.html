@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="container text-center">
-      <div class="row main-row border border-primary">
+      <div class="row main-row">
         <div class="col-sm-12 col-md-12 col-lg-1 col-lg-1"></div>
         <div class="col-sm-12 col-md-12 col-lg-11 col-lg-11">
           <div class="row glassmorphism-search mt-2 mb-2">
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div class="row main-row border border-primary">
+      <div class="row main-row">
         <div class="col-sm-12 col-md-12 col-lg-1 col-lg-1">
           <div class="glassmorphism-website-icons mt-2 mb-2">
             <a href="https://ue.instructure.com/login/canvas">
@@ -76,8 +76,42 @@
         <div class="col-sm-12 col-md-12 col-lg-11 col-lg-11">
           <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4 col-lg-4">
-              <div class="glassmorphism-twitter-feed mt-2 mb-2">
-                Spotify Music Player
+              <div class="glassmorphism-music-player mt-2 mb-2">
+                <div class="main-music-title">Music Player</div>
+                <img src="Photos/drake_album_two.jpg" class="img music-image" />
+                <div class="music-title">Passionfruit</div>
+                <div class="music-author">Drake</div>
+                <div>
+                  <audio controls id="audio-player">
+                    <source src="" type="audio/mpeg" />
+                  </audio>
+                </div>
+                <div>
+                  <button
+                    id="shuffle-button"
+                    class="music-player-buttons bi bi-shuffle"
+                  ></button
+                  ><button
+                    id="previous-button"
+                    class="music-player-buttons bi bi-skip-backward-circle-fill"
+                  ></button
+                  ><button
+                    id="play-button"
+                    class="music-player-buttons bi bi-play-circle-fill"
+                  ></button
+                  ><button
+                    id="forward-button"
+                    class="music-player-buttons bi bi-skip-forward-circle-fill"
+                  ></button
+                  ><button
+                    id="repeat-button"
+                    class="music-player-buttons bi bi-repeat"
+                  ></button>
+                </div>
+
+                <div class="music-lists">
+                  <ul id="music-list"></ul>
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-8 col-lg-8">
@@ -145,4 +179,135 @@
   <script src="Javascript/clock.js"></script>
   <script src="Javascript/weather_widget.js"></script>
   <script src="Javascript/quotes.js"></script>
+
+  <script>
+    const musicList = document.getElementById("music-list");
+    const audioPlayer = document.getElementById("audio-player");
+    const playButton = document.getElementById("play-button");
+    const previousButton = document.getElementById("previous-button");
+    const forwardButton = document.getElementById("forward-button");
+    const shuffleButton = document.getElementById("shuffle-button");
+    const repeatButton = document.getElementById("repeat-button");
+
+    let musicFiles = [];
+    let currentSongIndex = 0; // Keep track of the currently playing song
+    let isShuffle = false;
+    let isRepeat = false;
+
+    fetch("Music") // Assuming the music folder is in your root directory
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const htmlDocument = parser.parseFromString(data, "text/html");
+        const fileLinks = htmlDocument.querySelectorAll("a");
+
+        // ...
+        fileLinks.forEach((link) => {
+          const fileName = link.textContent.split(".").slice(0, -1).join(".");
+
+          // Exclude the current directory entry (denoted as '.')
+          if (fileName !== "." && !fileName.endsWith("/") && fileName !== "") {
+            const title = decodeURIComponent(fileName);
+
+            musicFiles.push({ title, fileName });
+            const li = document.createElement("li");
+            li.textContent = title.replace(/^\d+\s*/, "");
+            li.style.cursor = "pointer"; // Make the list items clickable
+            li.addEventListener("click", () => playMusic(fileName));
+            musicList.appendChild(li);
+          }
+        });
+        // ...
+      })
+      .catch((error) => console.error("Error fetching music list:", error));
+
+    function playMusic(fileName) {
+      const musicFile = musicFiles.find((file) => file.fileName === fileName);
+      if (musicFile) {
+        currentSongIndex = musicFiles.findIndex(
+          (file) => file.fileName === fileName
+        );
+        audioPlayer.src = `music/${encodeURIComponent(fileName)}.mp3`;
+        audioPlayer.play();
+      }
+    }
+
+    playButton.addEventListener("click", () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playButton.classList.remove("bi-play-circle-fill");
+        playButton.classList.add("bi-pause-circle-fill");
+      } else {
+        audioPlayer.pause();
+        playButton.classList.remove("bi-pause-circle-fill");
+        playButton.classList.add("bi-play-circle-fill");
+      }
+    });
+
+    previousButton.addEventListener("click", () => {
+      if (currentSongIndex > 0) {
+        currentSongIndex--;
+        playMusic(musicFiles[currentSongIndex].fileName);
+        console.log("currentSongIndex");
+      }
+    });
+
+    forwardButton.addEventListener("click", () => {
+      if (currentSongIndex < musicFiles.length - 1) {
+        currentSongIndex++;
+        playMusic(musicFiles[currentSongIndex].fileName);
+      }
+    });
+
+    // Function to play the next song
+    function playNextSong() {
+      if (currentSongIndex < musicFiles.length - 1) {
+        currentSongIndex++;
+        playMusic(musicFiles[currentSongIndex].fileName);
+      }
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements at i and j
+      }
+      return array;
+    }
+
+    if (isRepeat == false) {
+      audioPlayer.addEventListener("ended", playNextSong);
+      shuffleButton.addEventListener("click", () => {
+        isShuffle = !isShuffle;
+        if (isShuffle == true) {
+          musicFiles = shuffleArray(musicFiles); // Shuffle the songs
+          shuffleButton.classList.remove("bi-shuffle");
+          shuffleButton.classList.add("bi-arrow-right");
+          console.log("Shuffle");
+        } else if (isShuffle == false) {
+          audioPlayer.addEventListener("ended", playNextSong);
+          shuffleButton.classList.remove("bi-arrow-right");
+          shuffleButton.classList.add("bi-shuffle");
+          console.log("Next Song");
+        }
+      });
+    }
+
+    repeatButton.addEventListener("click", () => {
+      isRepeat = !isRepeat;
+      audioPlayer.loop = isRepeat; // Enable or disable song looping
+      if (isRepeat == true) {
+        // If repeat is enabled, play the current song again
+        audioPlayer.play();
+        repeatButton.classList.remove("bi-repeat");
+        repeatButton.classList.add("bi-repeat-1");
+        console.log("Repeat");
+      } else if (isRepeat == false) {
+        audioPlayer.addEventListener("ended", playNextSong);
+        repeatButton.classList.remove("bi-repeat-1");
+        repeatButton.classList.add("bi-repeat");
+        console.log("Next Song");
+      }
+    });
+  </script>
 </html>
